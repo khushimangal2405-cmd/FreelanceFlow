@@ -40,8 +40,9 @@ FREELANCEFLOW - PROFESSIONAL SAAS DASHBOARD
 RESET
 ========================================================= */
 
-{
-box-sizing: border-box;
+
+* {
+  box-sizing: border-box;
 }
 
 
