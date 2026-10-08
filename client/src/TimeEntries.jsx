@@ -121,7 +121,7 @@ function TimeEntries() {
   const fetchProjects = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/projects",
+        "http://https://freelanceflow-backend-p12r.onrender.com/api/projects",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -150,7 +150,7 @@ function TimeEntries() {
   const fetchTasks = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/tasks",
+        "http://https://freelanceflow-backend-p12r.onrender.com/api/tasks",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -179,7 +179,7 @@ function TimeEntries() {
   const fetchEntries = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/time-entries",
+        "http://https://freelanceflow-backend-p12r.onrender.com/api/time-entries",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -282,8 +282,8 @@ useEffect(() => {
 
     try {
       const url = editingId
-        ? `http://localhost:5000/api/time-entries/${editingId}`
-        : "http://localhost:5000/api/time-entries";
+        ? `http://https://freelanceflow-backend-p12r.onrender.com/api/time-entries/${editingId}`
+        : "http://https://freelanceflow-backend-p12r.onrender.com/api/time-entries";
 
       const response = await fetch(url, {
         method: editingId ? "PUT" : "POST",
@@ -392,7 +392,7 @@ useEffect(() => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/time-entries/${id}`,
+        `http://https://freelanceflow-backend-p12r.onrender.com/api/time-entries/${id}`,
         {
           method: "DELETE",
           headers: {

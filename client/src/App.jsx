@@ -25,7 +25,8 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+const [name, setName] = useState("");
+const [isRegister, setIsRegister] = useState(false);
   const [dashboard, setDashboard] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -51,40 +52,84 @@ const timeTrackingData = dashboard
   // LOGIN
   // =========================
   const handleLogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    setLoading(true);
+  setLoading(true);
+  setError("");
+
+  try {
+    const response = await fetch(
+      "https://freelanceflow-backend-p12r.onrender.com/api/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Login failed");
+    }
+
+    localStorage.setItem("token", data.token);
+    setToken(data.token);
+
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
+const handleRegister = async (e) => {
+  e.preventDefault();
+
+  setLoading(true);
+  setError("");
+
+  try {
+    const response = await fetch(
+     "https://freelanceflow-backend-p12r.onrender.com/api/auth/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          role: "client",
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Registration failed");
+    }
+
+    alert("Registration successful! Please login.");
+
+    setIsRegister(false);
+    setName("");
+    setEmail("");
+    setPassword("");
     setError("");
 
-    try {
-      const response = await fetch(
-        "http://localhost:5000/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Login failed");
-      }
-
-      localStorage.setItem("token", data.token);
-      setToken(data.token);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   // =========================
   // DASHBOARD
@@ -94,15 +139,14 @@ const timeTrackingData = dashboard
 
     const fetchDashboard = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/dashboard",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
+       const response = await fetch(
+   "https://freelanceflow-backend-p12r.onrender.com/api/dashboard",
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
         const data = await response.json();
 
         if (!response.ok) {
@@ -129,47 +173,87 @@ setDashboard(data);
   // =========================
   if (!token) {
     return (
-      <div className="login-page">
-        <div className="login-box">
+  <div className="login-page">
+    <div className="login-box">
 
-          <h1>FreelanceFlow</h1>
-          <p>Login to your account</p>
+      <h1>FreelanceFlow</h1>
 
-          <form onSubmit={handleLogin}>
+      <p>
+        {isRegister
+          ? "Create your account"
+          : "Login to your account"}
+      </p>
 
-            <input
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+      <form
+        onSubmit={isRegister ? handleRegister : handleLogin}
+      >
 
-            <input
-              type="password"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+        {isRegister && (
+          <input
+            type="text"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        )}
 
-            <button type="submit">
-              {loading ? "Logging in..." : "Login"}
-            </button>
+        <input
+          type="email"
+          placeholder="Enter email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-          </form>
+        <input
+          type="password"
+          placeholder="Enter password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
 
-          {error && (
-            <p className="error">
-              {error}
-            </p>
-          )}
+        <button type="submit">
+          {loading
+            ? isRegister
+              ? "Creating account..."
+              : "Logging in..."
+            : isRegister
+            ? "Register"
+            : "Login"}
+        </button>
 
-        </div>
-      </div>
-    );
+      </form>
+
+      {error && (
+        <p className="error">
+          {error}
+        </p>
+      )}
+
+      <p
+        style={{
+          marginTop: "18px",
+          textAlign: "center",
+          cursor: "pointer",
+          color: "#2563eb",
+          fontWeight: "600",
+        }}
+        onClick={() => {
+          setIsRegister(!isRegister);
+          setError("");
+        }}
+      >
+        {isRegister
+          ? "Already have an account? Login"
+          : "Don't have an account? Register"}
+      </p>
+
+    </div>
+  </div>
+);
   }
-
   // =========================
   // DASHBOARD LOADING
   // =========================
@@ -1199,4 +1283,5 @@ const invoiceChartColors = [
   );
 }
 
-export default App;
+export default App; 
+

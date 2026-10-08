@@ -30,7 +30,7 @@ const [loading, setLoading] = useState(true);
   const fetchClients = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/clients",
+        "http://https://freelanceflow-backend-p12r.onrender.com/api/clients",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ const [loading, setLoading] = useState(true);
   const fetchProjects = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/projects",
+        "http://https://freelanceflow-backend-p12r.onrender.com/api/projects",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -78,7 +78,7 @@ const [loading, setLoading] = useState(true);
   const fetchInvoices = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/invoices",
+        "http://https://freelanceflow-backend-p12r.onrender.com/api/invoices",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -125,7 +125,7 @@ const fetchInvoicePreview = async () => {
     });
 
     const response = await fetch(
-      `http://localhost:5000/api/invoices/preview?${params.toString()}`,
+      `http://https://freelanceflow-backend-p12r.onrender.com/api/invoices/preview?${params.toString()}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -172,8 +172,8 @@ useEffect(() => {
 
     try {
       const url = editingId
-        ? `http://localhost:5000/api/invoices/${editingId}`
-        : "http://localhost:5000/api/invoices";
+        ? `http://https://freelanceflow-backend-p12r.onrender.com/api/invoices/${editingId}`
+        : "http://https://freelanceflow-backend-p12r.onrender.com/api/invoices";
 
       const response = await fetch(url, {
         method: editingId ? "PUT" : "POST",
@@ -272,7 +272,7 @@ setEndDate("");
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/invoices/${id}`,
+        `http://https://freelanceflow-backend-p12r.onrender.com/api/invoices/${id}`,
         {
           method: "DELETE",
           headers: {

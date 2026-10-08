@@ -17,7 +17,7 @@ function Clients() {
 
   const fetchClients = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/clients", {
+      const response = await fetch("http://https://freelanceflow-backend-p12r.onrender.com/api/clients", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -55,8 +55,8 @@ function Clients() {
 
     try {
       const url = editingId
-        ? `http://localhost:5000/api/clients/${editingId}`
-        : "http://localhost:5000/api/clients";
+        ? `http://https://freelanceflow-backend-p12r.onrender.com/api/clients/${editingId}`
+        : "http://https://freelanceflow-backend-p12r.onrender.com/api/clients";
 
       const response = await fetch(url, {
         method: editingId ? "PUT" : "POST",
@@ -115,7 +115,7 @@ function Clients() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/clients/${id}`,
+        `http://https://freelanceflow-backend-p12r.onrender.com/api/clients/${id}`,
         {
           method: "DELETE",
           headers: {
