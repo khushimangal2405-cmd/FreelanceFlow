@@ -19,7 +19,7 @@ function Tasks() {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch("http://https://freelanceflow-backend-p12r.onrender.com/api/projects", {
+      const response = await fetch("https://freelanceflow-backend-p12r.onrender.com/api/projects", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -39,7 +39,7 @@ function Tasks() {
 
   const fetchTasks = async () => {
     try {
-      const response = await fetch("http://https://freelanceflow-backend-p12r.onrender.com/api/tasks", {
+      const response = await fetch("https://freelanceflow-backend-p12r.onrender.com/api/tasks", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -78,8 +78,8 @@ function Tasks() {
 
     try {
       const url = editingId
-        ? `http://https://freelanceflow-backend-p12r.onrender.com/api/tasks/${editingId}`
-        : "http://https://freelanceflow-backend-p12r.onrender.com/api/tasks";
+        ? `https://freelanceflow-backend-p12r.onrender.com/api/tasks/${editingId}`
+        : "https://freelanceflow-backend-p12r.onrender.com/api/tasks";
 
       const response = await fetch(url, {
         method: editingId ? "PUT" : "POST",
@@ -141,7 +141,7 @@ function Tasks() {
 
     try {
       const response = await fetch(
-        `http://https://freelanceflow-backend-p12r.onrender.com/api/tasks/${id}`,
+        `https://freelanceflow-backend-p12r.onrender.com/api/tasks/${id}`,
         {
           method: "DELETE",
           headers: {

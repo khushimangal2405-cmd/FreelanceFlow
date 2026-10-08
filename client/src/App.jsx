@@ -1284,4 +1284,3 @@ const invoiceChartColors = [
 }
 
 export default App; 
-

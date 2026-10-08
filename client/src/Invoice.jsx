@@ -30,7 +30,7 @@ const [loading, setLoading] = useState(true);
   const fetchClients = async () => {
     try {
       const response = await fetch(
-        "http://https://freelanceflow-backend-p12r.onrender.com/api/clients",
+        "https://freelanceflow-backend-p12r.onrender.com/api/clients",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ const [loading, setLoading] = useState(true);
   const fetchProjects = async () => {
     try {
       const response = await fetch(
-        "http://https://freelanceflow-backend-p12r.onrender.com/api/projects",
+       "https://freelanceflow-backend-p12r.onrender.com/api/projects",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -78,7 +78,7 @@ const [loading, setLoading] = useState(true);
   const fetchInvoices = async () => {
     try {
       const response = await fetch(
-        "http://https://freelanceflow-backend-p12r.onrender.com/api/invoices",
+       "https://freelanceflow-backend-p12r.onrender.com/api/invoices",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -125,7 +125,7 @@ const fetchInvoicePreview = async () => {
     });
 
     const response = await fetch(
-      `http://https://freelanceflow-backend-p12r.onrender.com/api/invoices/preview?${params.toString()}`,
+      `https://freelanceflow-backend-p12r.onrender.com/api/invoices/preview?${params.toString()}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -172,8 +172,8 @@ useEffect(() => {
 
     try {
       const url = editingId
-        ? `http://https://freelanceflow-backend-p12r.onrender.com/api/invoices/${editingId}`
-        : "http://https://freelanceflow-backend-p12r.onrender.com/api/invoices";
+        ? `https://freelanceflow-backend-p12r.onrender.com/api/invoices/${editingId}`
+        : "https://freelanceflow-backend-p12r.onrender.com/api/invoices";
 
       const response = await fetch(url, {
         method: editingId ? "PUT" : "POST",
@@ -272,7 +272,7 @@ setEndDate("");
 
     try {
       const response = await fetch(
-        `http://https://freelanceflow-backend-p12r.onrender.com/api/invoices/${id}`,
+       `https://freelanceflow-backend-p12r.onrender.com/api/invoices/${id}`,
         {
           method: "DELETE",
           headers: {
